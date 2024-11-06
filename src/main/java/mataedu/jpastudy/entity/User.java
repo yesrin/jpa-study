@@ -29,4 +29,8 @@ public class User {
                 .build();
     }
 
+    public void update(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }

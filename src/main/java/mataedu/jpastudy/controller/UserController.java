@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -29,5 +30,10 @@ public class UserController {
     @DeleteMapping("/user")
     public void deleteUser(Long id) {
         userService.deleteUser(id);
+    }
+
+    @PutMapping("/user")
+    public void updateUser(Long id, String name, String email) {
+        userService.updateUser(id, name, email);
     }
 }

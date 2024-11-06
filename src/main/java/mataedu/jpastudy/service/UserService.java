@@ -29,4 +29,9 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 유저가 존재하지 않습니다."));
         userRepository.delete(user);
     }
+
+    public void updateUser(Long id, String name, String email) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 유저가 존재하지 않습니다."));
+        user.update(name, email);
+    }
 }
