@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mataedu.jpastudy.entity.User;
 import mataedu.jpastudy.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -23,5 +24,10 @@ public class UserController {
     @GetMapping("/user/find")
     public List<User> findUser(String name) {
         return userService.findUser(name);
+    }
+
+    @DeleteMapping("/user")
+    public void deleteUser(Long id) {
+        userService.deleteUser(id);
     }
 }

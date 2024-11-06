@@ -24,4 +24,9 @@ public class UserService {
     public List<User> findUser(String name) {
         return userJpqlRepository.findUserName(name);
     }
+
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 유저가 존재하지 않습니다."));
+        userRepository.delete(user);
+    }
 }
