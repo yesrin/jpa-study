@@ -4,19 +4,20 @@ import mataedu.jpastudy.entity.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@DataJpaTest
-class UserRepositoryTest {
+@SpringBootTest
+class UserJpqlRepositoryTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserJpqlRepository userJpqlRepository;
 
     @Test
-    @DisplayName("유저를 저장한다.")
-    void addUser() {
+    @DisplayName("JPQL로 유저를 저장한다.")
+    void save() {
         // given
         User user = User.builder()
                 .id(1L)
@@ -25,11 +26,10 @@ class UserRepositoryTest {
                 .build();
 
         // when
-        User saveUser = userRepository.save(user);
+        User saveUser = userJpqlRepository.saveUser(user);
 
         // then
         assertThat(saveUser.getId()).isNotNull();
 
     }
-
 }

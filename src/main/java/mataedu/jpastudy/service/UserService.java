@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final UserJpqlRepository userJpqlRepository;
 
+    @Transactional
     public Long addUser(String name, String email) {
         User user = User.toUser(name, email);
         return userRepository.save(user).getId();
