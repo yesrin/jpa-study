@@ -1,6 +1,5 @@
 package mataedu.jpastudy.repository;
 
-import jakarta.persistence.EntityManager;
 import mataedu.jpastudy.entity.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,14 +18,11 @@ class UserJpqlRepositoryTest {
     @Autowired
     private UserJpqlRepository userJpqlRepository;
 
-    @Autowired
-    private EntityManager em;
     @Test
     @DisplayName("JPQL로 유저를 저장한다.")
     void save() {
         // given
         User user = User.builder()
-                .id(1L)
                 .name("test")
                 .email("test@test.com")
                 .build();
@@ -36,7 +32,6 @@ class UserJpqlRepositoryTest {
 
         // then
         assertThat(saveUser.getId()).isNotNull();
-
     }
 
     @Test

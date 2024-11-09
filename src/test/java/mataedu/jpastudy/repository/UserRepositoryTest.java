@@ -21,8 +21,9 @@ class UserRepositoryTest {
     @DisplayName("유저를 저장한다.")
     void addUser() {
         // given
+        // 아이디가 있으면 select 쿼리가 나감
         User user = User.builder()
-                .id(1L)
+               // .id(1L)
                 .name("test")
                 .email("test@test.com")
                 .build();
@@ -32,7 +33,6 @@ class UserRepositoryTest {
 
         // then
         assertThat(saveUser.getId()).isNotNull();
-
     }
 
     @Test
