@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
@@ -11,6 +12,7 @@ import org.hibernate.annotations.Comment;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Book extends BaseEntity {
 
     @Comment("도서명")

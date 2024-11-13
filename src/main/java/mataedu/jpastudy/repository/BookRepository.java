@@ -1,4 +1,4 @@
-package mataedu.jpastudy.service;
+package mataedu.jpastudy.repository;
 
 import mataedu.jpastudy.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
