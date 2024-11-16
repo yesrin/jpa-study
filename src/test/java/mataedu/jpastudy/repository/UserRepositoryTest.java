@@ -23,7 +23,7 @@ class UserRepositoryTest {
         // given
         // 아이디가 있으면 select 쿼리가 나감
         User user = User.builder()
-               // .id(1L)
+                // .id(1L)
                 .name("test")
                 .email("test@test.com")
                 .build();
@@ -44,8 +44,10 @@ class UserRepositoryTest {
                 .email("test.test.com")
                 .build();
 
+        User saveUser = userRepository.save(user);
         // when
-        Long id = user.getId();
+
+        Long id = saveUser.getId();
         Optional<User> optionalUser = userRepository.findById(id);
 
         // then
