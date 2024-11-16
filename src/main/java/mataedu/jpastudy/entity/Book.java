@@ -29,4 +29,8 @@ public class Book extends BaseEntity {
     @Comment("가격")
     public int price;
 
+    public void changeAuthor(Author getAuthor) {
+        this.author = getAuthor;
+        getAuthor.getBooks().add(this);
+    }
 }

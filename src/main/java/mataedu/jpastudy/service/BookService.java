@@ -14,14 +14,18 @@ public class BookService {
     private final AuthorRepository authorRepository;
 
     public Book addBook(String title, String name) {
-        Author author = Author.builder().name(name).build();
+
+        Author author = Author.builder()
+                .name(name)
+                .build();
 
         Author getAuthor = authorRepository.findByName(name).orElse(authorRepository.save(author));
 
         Book book = Book.builder()
                 .title(title)
-                .author(getAuthor)
                 .build();
+
+        book.changeAuthor(getAuthor);
 
         return bookRepository.save(book);
     }
