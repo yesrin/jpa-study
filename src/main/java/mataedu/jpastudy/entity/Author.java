@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,8 @@ public class Author extends BaseEntity {
     private String email;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    private List<Book> books;
+    @Builder.Default
+    private List<Book> books = new ArrayList<>();
 
     public static Author toAuthor(String name, String email) {
         return Author.builder()
