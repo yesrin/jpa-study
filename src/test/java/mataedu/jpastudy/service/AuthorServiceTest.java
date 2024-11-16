@@ -13,7 +13,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@Transactional
 class AuthorServiceTest {
 
     @Autowired
@@ -32,7 +31,7 @@ class AuthorServiceTest {
         bookService.addBook(title, name);
 
         //when
-        List<Book> result = authorService.getBookList(name);
+        List<Book> result = authorService.getAuthorBooks(name);
 
         //then
         assertThat(result).hasSize(1);

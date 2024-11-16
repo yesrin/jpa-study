@@ -1,6 +1,7 @@
 package mataedu.jpastudy.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ public class Book extends BaseEntity {
     public String title;
 
     @Comment("저자")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //@ManyToOne default 즉시로딩이므로 설정 필요
     public Author author;
 
     @Comment("출판사")
