@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import mataedu.jpastudy.entity.Author;
 import mataedu.jpastudy.entity.Book;
 import mataedu.jpastudy.repository.AuthorRepository;
+import mataedu.jpastudy.repository.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +18,22 @@ import java.util.Optional;
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+
     public List<Book> getAuthorBooks(String name) {
         Optional<Author> optionalAuthor = authorRepository.findByName(name);
 
         optionalAuthor.orElseThrow(() -> new IllegalArgumentException("해당 저자의 도서가 존재하지 않습니다."));
 
-        return optionalAuthor.get().getBooks();
+        return optionalAuthor.get().getBooks(); //여기선 발생 안하네
+    }
+
+    public Author addAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    public List<Book> getAuthorBooksFetchJoin(String authorName) {
+       // return bookRepository.findBooks(authorName);
+        return null;
     }
 }

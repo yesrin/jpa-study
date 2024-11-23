@@ -23,19 +23,58 @@ class AuthorServiceTest {
     private BookService bookService;
 
     @Test
-    @DisplayName("저자의 책 리스트를 조회힌다.")
-    void findBooksByAuthor() {
+    @DisplayName("저자의 책 리스트를 조회힌다. N+1 ")
+    void getAuthorBooks() {
         //given
-        String title = "JPA";
-        String name = "김영한";
+        Author author = Author.builder().name("김영한").build();
+        authorService.addAuthor(author);
 
-        bookService.addBook(title, name);
+        bookService.addBook("JPA", author.getName());
+        bookService.addBook("Spring", author.getName());
+        bookService.addBook("Spring Boot", author.getName());
 
         //when
-        List<Book> result = authorService.getAuthorBooks(name);
+        System.out.println("---------------------");
+        List<Book> result = authorService.getAuthorBooks(author.getName());
+        System.out.println("---------------------");
 
         //then
-        assertThat(result).hasSize(1);
-
+        assertThat(result).hasSize(3);
     }
+
+    @Test
+    @DisplayName("저자의 책 리스트를 조회힌다. fetch join ")
+    void getAuthorBooksFetchJoin() {
+        //given
+        Author author = Author.builder().name("김영한").build();
+        authorService.addAuthor(author);
+
+        bookService.addBook("JPA", author.getName());
+        bookService.addBook("Spring", author.getName());
+        bookService.addBook("Spring Boot", author.getName());
+
+        //when
+        System.out.println("---------------------");
+        List<Book> result = authorService.getAuthorBooksFetchJoin(author.getName());
+        System.out.println("---------------------");
+
+        //then
+        assertThat(result).hasSize(3);
+    }
+
+
+    @Test
+    @DisplayName("저자 추가")
+    void addAuthor() {
+        //given
+        Author author = Author.builder().name("김영한").build();
+
+        //when
+        Author authorResult = authorService.addAuthor(author);
+
+        //then
+        assertThat(authorResult.getName()).isEqualTo(author.getName());
+    }
+
+
 }

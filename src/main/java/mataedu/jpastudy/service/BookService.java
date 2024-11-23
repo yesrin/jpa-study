@@ -13,13 +13,9 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
-    public Book addBook(String title, String name) {
+    public Book addBook(String title, String authorName) {
 
-        Author author = Author.builder()
-                .name(name)
-                .build();
-
-        Author getAuthor = authorRepository.findByName(name).orElse(authorRepository.save(author));
+        Author getAuthor = authorRepository.findByName(authorName).orElseThrow(() -> new IllegalArgumentException("해당 저자가 존재하지 않습니다."));
 
         Book book = Book.builder()
                 .title(title)
