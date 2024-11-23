@@ -24,6 +24,10 @@ public class AuthorService {
         Optional<Author> optionalAuthor = authorRepository.findByName(name);
 
         optionalAuthor.orElseThrow(() -> new IllegalArgumentException("해당 저자의 도서가 존재하지 않습니다."));
+        System.out.println("optionalAuthor.get().getBooks() 호출 전");
+        List<Book> books = optionalAuthor.get().getBooks();
+        System.out.println("optionalAuthor.get().getBooks() 호출 후");
+        //books.forEach(book -> System.out.println(book.getTitle())); // 각 Book 엔티티를 개별적으로 접근. 왜 쿼리 안날라가지.
 
         return optionalAuthor.get().getBooks(); //여기선 발생 안하네
     }
@@ -33,7 +37,7 @@ public class AuthorService {
     }
 
     public List<Book> getAuthorBooksFetchJoin(String authorName) {
-       // return bookRepository.findBooks(authorName);
+        // return bookRepository.findBooks(authorName);
         return null;
     }
 }

@@ -35,11 +35,13 @@ class AuthorServiceTest {
 
         //when
         System.out.println("---------------------");
-        List<Book> result = authorService.getAuthorBooks(author.getName());
+        List<Book> resultBooks = authorService.getAuthorBooks(author.getName()); // 여기선 books 조회할때 생길거라 생각했는 n+1 안생기고
+        System.out.println("22222222222222");
+       // resultBooks.forEach(book -> System.out.println(book.getTitle())); // 이렇게 직접 book의 필드로 접근 해야만 생김 => ??? 쿼리 안나감
         System.out.println("---------------------");
 
         //then
-        assertThat(result).hasSize(3);
+        assertThat(resultBooks).hasSize(3);
     }
 
     @Test
