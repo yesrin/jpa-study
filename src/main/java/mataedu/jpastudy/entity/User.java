@@ -21,6 +21,7 @@ public class User extends BaseEntity {
 
     private String name;
     private String email;
+    private Long age;
 
     public static User toUser(String name, String email) {
         return User.builder()

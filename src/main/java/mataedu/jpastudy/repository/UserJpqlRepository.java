@@ -42,6 +42,10 @@ public class UserJpqlRepository {
                 .getResultList();
     }
 
+    public void bulkUpdate(Long age){
+        entityManager.createQuery("update User u set u.age=age").executeUpdate();
+    }
+
 
     public Optional<User> findById(Long id) {
         return Optional.ofNullable(entityManager.find(User.class, id));
