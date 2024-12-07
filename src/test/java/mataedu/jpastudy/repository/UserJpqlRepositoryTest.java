@@ -54,4 +54,22 @@ class UserJpqlRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("NamedQuery를 사용한 유저 조회")
+    void getUserUsingNamedQuery() {
+
+        User user = User.builder()
+                .name("김영한")
+                .email("test@test.com")
+                .build();
+        userJpqlRepository.saveUser(user);
+
+        //when
+        System.out.println("============== 조회쿼리 ==============");
+        List<User> users = userJpqlRepository.getUsersUsingNameQuery(user.getName());
+
+        //then
+        assertThat(users).hasSize(1);
+    }
+
 }

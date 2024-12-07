@@ -13,6 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Table(name = "users")
+@NamedQuery(
+        name="User.findByName",
+        query = "select u from User u where u.name=:name"
+)
 public class User extends BaseEntity {
 
     private String name;

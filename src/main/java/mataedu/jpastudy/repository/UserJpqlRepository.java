@@ -3,7 +3,6 @@ package mataedu.jpastudy.repository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import mataedu.jpastudy.entity.User;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +35,12 @@ public class UserJpqlRepository {
 //        String sql = "SELECT * FROM users WHERE name = ?";
 //        return jdbcTemplate.query(sql, new Object[]{name}, new UserRowMapper());
 //    }
+
+    public List<User> getUsersUsingNameQuery(String name) {
+        return entityManager.createNamedQuery("User.findByName")
+                .setParameter("name", name)
+                .getResultList();
+    }
 
 
     public Optional<User> findById(Long id) {
