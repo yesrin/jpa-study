@@ -33,4 +33,8 @@ public class Book extends BaseEntity {
         this.author = getAuthor;
         getAuthor.getBooks().add(this);
     }
+
+    public void updateTitle(String newTitle) {
+        this.title = newTitle;
+    }
 }
